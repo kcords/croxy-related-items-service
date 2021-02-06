@@ -16,7 +16,7 @@ const RelatedSchema = new mongoose.Schema({
       details: [String],
       seller: String,
       shippingStatus: String,
-      favorite: Boolean,
+      // favorite: Boolean,
     },
   ],
   shopItems: [
@@ -29,7 +29,7 @@ const RelatedSchema = new mongoose.Schema({
       details: [String],
       seller: String,
       shippingStatus: String,
-      favorite: Boolean,
+      // favorite: Boolean,
     },
   ],
 });
