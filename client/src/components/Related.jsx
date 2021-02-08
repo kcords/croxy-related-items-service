@@ -30,6 +30,7 @@ class Related extends React.Component {
     const { selectedItem } = this.props;
     axios.get(`/api/relatedItems/${selectedItem}`)
       .then((response) => {
+        console.log(response.data)
         this.setState({
           forYou: response.data.relatedItems,
           fromShop: response.data.shopItems,
@@ -74,7 +75,7 @@ class Related extends React.Component {
             <Modal
               show={show}
               closeModal={this.closeModal}
-              item={currentItemLoc === 'shop' ? fromShop.filter((item) => item._id === currentItemId) : forYou.filter((item) => item._id === currentItemId)}
+              item={currentItemLoc === 'shop' ? fromShop.filter((item) => item.id === currentItemId) : forYou.filter((item) => item.id === currentItemId)}
             />
           </div>
         </div>

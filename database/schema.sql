@@ -40,3 +40,9 @@ CREATE TABLE related_items (
   FOREIGN KEY(listing_id)
     REFERENCES listing(id)
 );
+
+-- SELECT *, 'related' AS category FROM related_items ri
+-- where ri.listing_id = 500
+-- UNION
+-- SELECT *, 'shop' AS category FROM shop_items si
+-- where si.listing_id = 500;

@@ -11,7 +11,7 @@ app.use(express.static('public'));
 
 app.get('/api/relatedItems/:id', (req, res) => {
   const { id } = req.params;
-  RelatedItems.findById(id)
+  RelatedItems(id)
     .then((response) => {
       console.log(`Item ${id} successfully retrieved`);
       res.send(response);
