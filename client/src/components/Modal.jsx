@@ -16,17 +16,18 @@ const Modal = ({ show, closeModal, item }) => {
     closeModal();
   };
 
-  const separateDetails = () => {
-    let detailsString = '';
-    for (let i = 0; i < item[0].details.length; i += 1) {
-      detailsString += `${item[0].details[i]} | `;
-    }
-    return detailsString.slice(0, -2);
-  };
+  // const separateDetails = () => {
+  //   let detailsString = '';
+  //   for (let i = 0; i < item[0].details.length; i += 1) {
+  //     detailsString += `${item[0].details[i]} | `;
+  //   }
+  //   return detailsString.slice(0, -2);
+  // };
 
   if (!show) {
     return null;
   }
+  console.log(item)
   return (
     <div className="related-modalContainer">
       <div className="related-modalButtonClose">
@@ -54,7 +55,7 @@ const Modal = ({ show, closeModal, item }) => {
         <div className="related-modalTextInformation">
           <div className="related-modalNamePrice">
             <div className="related-modalItemName">{item[0].name}</div>
-            <div id="related-modalPrice">{`$${(item[0].price / 50).toFixed(2)}`}</div>
+            <div id="related-modalPrice">{`$${(item[0].price.slice(1) / 50).toFixed(2)}`}</div>
           </div>
           <div className="related-modalSeller">
             <span className="related-modalInformationHeader">Seller</span>
@@ -67,7 +68,7 @@ const Modal = ({ show, closeModal, item }) => {
             >
               Highlights
             </div>
-            <div>{separateDetails()}</div>
+            <div>{item[0].details}</div>
           </div>
           <div>
             <div className="related-modalInformationHeader">
@@ -86,7 +87,7 @@ const Modal = ({ show, closeModal, item }) => {
           </div>
         </div>
         <div className="related-modalMainImage">
-          <img src={item[0].imageUrl[index]} alt="product-main" id="related-images" />
+          <img src={item[0][`imageurl${index+1}`]} alt="product-main" id="related-images" />
           {favorite ? (
             <button
               type="button"
@@ -119,7 +120,7 @@ const Modal = ({ show, closeModal, item }) => {
           >
             <img
               data-id="0"
-              src={item[0].imageUrl[0]}
+              src={item[0].imageurl1}
               alt="product"
               id="related-images"
             />
@@ -133,7 +134,7 @@ const Modal = ({ show, closeModal, item }) => {
           >
             <img
               data-id="1"
-              src={item[0].imageUrl[1]}
+              src={item[0].imageurl2}
               alt="product"
               id="related-images"
             />
@@ -147,7 +148,7 @@ const Modal = ({ show, closeModal, item }) => {
           >
             <img
               data-id="2"
-              src={item[0].imageUrl[2]}
+              src={item[0].imageurl3}
               alt="product"
               id="related-images"
             />

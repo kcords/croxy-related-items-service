@@ -19,7 +19,7 @@ const IndividualItem = ({ item, loc, openModal }) => {
       <div className="related-imageButton">
         <span
           role="button"
-          data-id={item._id}
+          data-id={item.id}
           data-location={loc}
           onClick={handleClick}
           tabIndex={0}
@@ -29,14 +29,14 @@ const IndividualItem = ({ item, loc, openModal }) => {
         >
           <img
             id="related-images"
-            src={item.imageUrl[0]}
+            src={item.imageurl1}
             alt="product"
-            data-id={item._id}
+            data-id={item.id}
             data-location={loc}
           />
         </span>
         <div className="related-favoriteContainer" role="button">
-          {favorite[item._id] ? (
+          {favorite[item.id] ? (
             <button
               type="button"
               className="related-favorited"
@@ -44,7 +44,7 @@ const IndividualItem = ({ item, loc, openModal }) => {
               id="favoriteButton"
               onClick={(e) => { toggleFavorite(e.target.dataset.id); }}
             >
-              <i className="fa fa-heart" data-id={item._id} />
+              <i className="fa fa-heart" data-id={item.id} />
             </button>
           )
             : (
@@ -56,7 +56,7 @@ const IndividualItem = ({ item, loc, openModal }) => {
               >
                 <i
                   className="far fa-heart"
-                  data-id={item._id}
+                  data-id={item.id}
                 />
               </button>
             )}
@@ -65,7 +65,7 @@ const IndividualItem = ({ item, loc, openModal }) => {
       <div
         className="related-modalClick"
         role="button"
-        data-id={item._id}
+        data-id={item.id}
         data-location={loc}
         onClick={handleClick}
         tabIndex={0}
@@ -73,28 +73,28 @@ const IndividualItem = ({ item, loc, openModal }) => {
       >
         <h3
           className="related-itemCaption"
-          data-id={item._id}
+          data-id={item.id}
           data-location={loc}
         >
           {item.name}
         </h3>
         <div
           className="related-seller"
-          data-id={item._id}
+          data-id={item.id}
           data-location={loc}
         >
           {item.seller}
         </div>
         <div
           className="related-price"
-          data-id={item._id}
+          data-id={item.id}
           data-location={loc}
         >
-          {`$${(item.price / 50).toFixed(2)}`}
+          {`$${(Number(item.price.slice(1)) / 50).toFixed(2)}`}
         </div>
         <div
           className="related-shippingStatus"
-          data-id={item._id}
+          data-id={item.id}
           data-location={loc}
         >
           {item.shippingStatus}
