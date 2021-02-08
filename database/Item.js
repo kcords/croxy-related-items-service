@@ -1,39 +1,21 @@
-const mongoose = require('mongoose');
+const { pool } = require('./index.js');
 
-mongoose.Promise = global.Promise;
-// eslint-disable-next-line no-unused-vars
-const db = require('./index.js');
+const relatedQuery = 'SELECT * FROM related_items ri where ri.listing_id = $1';
+const shopQuery = 'SELECT * FROM shop_items si where si.listing_id = $1';
 
-const RelatedSchema = new mongoose.Schema({
-  _id: Number,
-  relatedItems: [
-    {
-      _id: Number,
-      name: String,
-      price: Number,
-      imageUrl: [String],
-      description: String,
-      details: [String],
-      seller: String,
-      shippingStatus: String,
-      // favorite: Boolean,
-    },
-  ],
-  shopItems: [
-    {
-      _id: Number,
-      name: String,
-      price: Number,
-      imageUrl: [String],
-      description: String,
-      details: [String],
-      seller: String,
-      shippingStatus: String,
-      // favorite: Boolean,
-    },
-  ],
-});
+const Related = (id) => {
+  const relatedItems = pool.query(relatedQuery, [ id ]);
+  const shopItems = pool.query(shopQuery, [ id ]);
 
-const RelatedItem = mongoose.model('RelatedItem', RelatedSchema);
+  return Promise.all([relatedItems, shopItems])
+    .then( values => {
+      const results = {
+        id: parseInt(id),
+        relatedItems: values[0].rows,
+        shopItems: values[1].rows,
+      }
+      return results;
+    })
+}
 
-module.exports = RelatedItem;
+module.exports = Related;

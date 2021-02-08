@@ -1,8 +1,10 @@
-/* eslint-disable no-console */
-const mongoose = require('mongoose');
+const { Pool } = require('pg');
 
-const db = mongoose.connect('mongodb://localhost/Related', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => { console.log('Connected to Mongo'); })
+const connectionString = 'postgres://kylecordell:postgres@localhost:5432/sdc_related_service';
+const pool = new Pool({connectionString});
+
+pool.connect()
+  .then(() => { console.log('Connected to the database!'); })
   .catch((err) => { console.log(err); });
 
-module.exports = db;
+module.exports = {pool};
