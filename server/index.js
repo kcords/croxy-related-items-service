@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+require('newrelic');
 const express = require('express');
 const compression = require('compression');
 const RelatedItems = require('../database/Item.js');
@@ -11,6 +12,7 @@ app.use(express.static('public'));
 
 app.get('/api/relatedItems/:id', (req, res) => {
   const { id } = req.params;
+  console.log(id, 'got!')
   RelatedItems(id)
     .then((response) => {
       console.log(`Item ${id} successfully retrieved`);
