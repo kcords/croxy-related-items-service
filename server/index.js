@@ -5,7 +5,7 @@ const compression = require('compression');
 const RelatedItems = require('../database/Item.js');
 
 const app = express();
-const PORT = 3001 || process.env.PORT;
+const PORT = 80 || process.env.PORT;
 
 app.use(compression());
 app.use(express.static('public'));
