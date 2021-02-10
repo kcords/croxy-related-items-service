@@ -5,10 +5,10 @@ export let options = {
   scenarios: {
     related_test: {
       executor: 'constant-arrival-rate',
-      rate: 1000,//requests per timeUnit
-      timeUnit: '1s',//duration between requests
-      duration: '1m',//total test duration
-      preAllocatedVUs: 1000,//number of virtual users
+      rate: 1000,
+      timeUnit: '1s',
+      duration: '1m',
+      preAllocatedVUs: 1,
     }
   }
 }
