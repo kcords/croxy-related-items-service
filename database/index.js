@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
+require('dotenv').config()
 
-const connectionString = 'postgres://kylecordell:postgres@18.216.234.93:5432/sdc_related_service';
+const connectionString = `postgres://remote:${process.env.DB}@18.216.234.93:5432/postgres`;
 const pool = new Pool({connectionString});
 
 pool.connect()
