@@ -1,6 +1,8 @@
 ### Description
 A related items micro service for an online ecommerce storefront
 
+![48,000 Requests Per Minute](demo/48000rpm.png)
+
 ### Setup
 1. Compile bundle.js: `npm run build-dev`
 2. Start the server: `num run start-dev`
